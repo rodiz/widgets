@@ -94,13 +94,12 @@
     .le-widget-panel.le-open { display: flex; }
 
     .le-widget-header {
-      background: linear-gradient(135deg, ${cfg.primaryColor} 0%, rgba(0,0,0,.05) 100%);
-      color: #fff; padding: 18px 20px;
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      border-bottom: 1px solid rgba(255,255,255,.1);
+      background: ${cfg.primaryColor};
+      color: #fff; padding: 16px 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
       flex-shrink: 0;
     }
-    .le-widget-header-logo { height: 45px; max-width: 90px; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,.1)); }
+    .le-widget-header-logo { height: 55px; max-width: 110px; object-fit: contain; }
     .le-widget-header-text { flex: 1; min-width: 0; }
     .le-widget-header-text strong { display: block; font-size: 16px; font-weight: 600; line-height: 1.2; }
     .le-widget-header-text span { display: block; font-size: 13px; opacity: .9; margin-top: 4px; }
