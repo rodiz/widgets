@@ -95,11 +95,11 @@
 
     .le-widget-header {
       background: ${cfg.primaryColor};
-      color: #fff; padding: 16px 20px;
+      color: #fff; padding: 12px 8px;
       display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 12px;
       flex-shrink: 0; position: relative;
     }
-    .le-widget-header-logo { height: 70px; width: calc(100% - 40px); object-fit: contain; }
+    .le-widget-header-logo { height: 70px; width: 100%; object-fit: contain; }
     .le-widget-header-text { text-align: center; }
     .le-widget-header-text strong { display: block; font-size: 18px; font-weight: 700; line-height: 1.2; }
     .le-widget-header-text span { display: block; font-size: 13px; opacity: .9; margin-top: 4px; }
