@@ -95,7 +95,7 @@
 
     .le-widget-header {
       background: ${cfg.primaryColor};
-      color: #fff; padding: 12px 8px;
+      color: #fff; padding: 12px 0;
       display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 12px;
       flex-shrink: 0; position: relative;
     }
