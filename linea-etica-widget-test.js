@@ -74,70 +74,86 @@
       width: ${cfg.buttonWidth}; height: ${cfg.buttonHeight}; border-radius: ${cfg.buttonBorderRadius};
       background: ${cfg.buttonImageUrl ? "transparent" : cfg.primaryColor};
       ${cfg.buttonImageUrl ? `background-image: url('${cfg.buttonImageUrl}'); background-size: ${cfg.buttonImageFit}; background-position: center; background-repeat: no-repeat;` : ""}
-      box-shadow: ${cfg.buttonBoxShadow};
+      box-shadow: ${cfg.buttonBoxShadow || "0 4px 20px rgba(0,0,0,.2)"};
       cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: transform .15s ease-in-out;
+      transition: all .25s cubic-bezier(.4, 0, .2, 1);
     }
-    .le-widget-btn:hover { transform: scale(1.06); }
+    .le-widget-btn:hover { transform: scale(1.08); box-shadow: ${cfg.buttonBoxShadow || "0 8px 32px rgba(0,0,0,.25)"}; }
+    .le-widget-btn:active { transform: scale(.98); }
     .le-widget-btn svg { width: 26px; height: 26px; fill: #fff; display: ${cfg.buttonImageUrl ? "none" : "block"}; }
 
     .le-widget-panel {
       position: fixed; bottom: 90px; ${cfg.position}: 20px; z-index: 999999;
-      width: 360px; max-width: calc(100vw - 32px); height: 520px; max-height: calc(100vh - 120px);
-      background: #fff; border-radius: 14px; box-shadow: 0 10px 40px rgba(0,0,0,.3);
+      width: 380px; max-width: calc(100vw - 32px); height: 560px; max-height: calc(100vh - 120px);
+      background: #fff; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,.15), 0 0 1px rgba(0,0,0,.1);
       display: none; flex-direction: column; overflow: hidden;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      animation: le-slide-up .3s ease-out;
     }
+    @keyframes le-slide-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     .le-widget-panel.le-open { display: flex; }
 
     .le-widget-header {
-      background: ${cfg.primaryColor}; color: #fff; padding: 14px 16px;
-      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      background: linear-gradient(135deg, ${cfg.primaryColor} 0%, rgba(0,0,0,.05) 100%);
+      color: #fff; padding: 18px 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      flex-shrink: 0;
     }
-    .le-widget-header-logo { height: 40px; max-width: 80px; object-fit: contain; }
-    .le-widget-header-text strong { display: block; font-size: 15px; }
-    .le-widget-header-text span { display: block; font-size: 12px; opacity: .85; }
-    .le-widget-close { cursor: pointer; opacity: .85; font-size: 20px; line-height: 1; background: none; border: none; color: #fff; }
+    .le-widget-header-logo { height: 45px; max-width: 90px; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,.1)); }
+    .le-widget-header-text { flex: 1; min-width: 0; }
+    .le-widget-header-text strong { display: block; font-size: 16px; font-weight: 600; line-height: 1.2; }
+    .le-widget-header-text span { display: block; font-size: 13px; opacity: .9; margin-top: 4px; }
+    .le-widget-close { cursor: pointer; opacity: .8; font-size: 24px; line-height: 1; background: none; border: none; color: #fff; padding: 4px; transition: opacity .2s; flex-shrink: 0; }
     .le-widget-close:hover { opacity: 1; }
 
     .le-widget-body {
-      flex: 1; overflow-y: auto; padding: 12px; background: #f7f7f8;
-      display: flex; flex-direction: column; gap: 8px;
+      flex: 1; overflow-y: auto; padding: 16px; background: linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%);
+      display: flex; flex-direction: column; gap: 12px;
     }
-    .le-msg { max-width: 80%; padding: 9px 12px; border-radius: 10px; font-size: 13.5px; line-height: 1.4; white-space: pre-wrap; word-wrap: break-word; display: flex; flex-direction: column; gap: 6px; }
-    .le-msg-content { }
-    .le-msg-bot { background: #fff; border: 1px solid #e5e5e5; color: #222; align-self: flex-start; }
-    .le-msg-user { background: ${cfg.primaryColor}; color: #fff; align-self: flex-end; }
-    .le-msg-time { font-size: 11px; margin-top: 4px; }
-    .le-msg-bot .le-msg-time { color: #bbb; }
-    .le-msg-user .le-msg-time { color: rgba(255,255,255,.7); }
-    .le-msg-typing { align-self: flex-start; display: flex; gap: 4px; padding: 10px 12px; }
-    .le-msg-typing span { width: 6px; height: 6px; border-radius: 50%; background: #bbb; animation: le-blink 1.2s infinite; }
+    .le-widget-body::-webkit-scrollbar { width: 6px; }
+    .le-widget-body::-webkit-scrollbar-track { background: transparent; }
+    .le-widget-body::-webkit-scrollbar-thumb { background: #d0d0d0; border-radius: 3px; }
+    .le-widget-body::-webkit-scrollbar-thumb:hover { background: #999; }
+
+    .le-msg { max-width: 85%; padding: 11px 14px; border-radius: 12px; font-size: 14px; line-height: 1.5; white-space: pre-wrap; word-wrap: break-word; display: flex; flex-direction: column; gap: 6px; animation: le-fade-in .2s ease-out; }
+    @keyframes le-fade-in { from { opacity: 0; } to { opacity: 1; } }
+    .le-msg-content { word-break: break-word; }
+    .le-msg-bot { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.08); color: #2c3e50; align-self: flex-start; border: none; }
+    .le-msg-user { background: ${cfg.primaryColor}; color: #fff; align-self: flex-end; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+    .le-msg-time { font-size: 12px; margin-top: 2px; font-weight: 500; }
+    .le-msg-bot .le-msg-time { color: #a8a8a8; }
+    .le-msg-user .le-msg-time { color: rgba(255,255,255,.85); }
+    .le-msg-typing { align-self: flex-start; display: flex; gap: 5px; padding: 12px 14px; background: #fff; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    .le-msg-typing span { width: 7px; height: 7px; border-radius: 50%; background: #999; animation: le-blink 1.2s infinite; }
     .le-msg-typing span:nth-child(2) { animation-delay: .2s; }
     .le-msg-typing span:nth-child(3) { animation-delay: .4s; }
     @keyframes le-blink { 0%,80%,100%{opacity:.3} 40%{opacity:1} }
 
-    .le-widget-buttons { display: flex; flex-wrap: wrap; gap: 6px; align-self: flex-start; max-width: 90%; }
+    .le-widget-buttons { display: flex; flex-wrap: wrap; gap: 8px; align-self: flex-start; max-width: 90%; }
     .le-widget-buttons button {
-      border: 1px solid ${cfg.primaryColor}; color: ${cfg.primaryColor}; background: #fff;
-      border-radius: 20px; padding: 6px 12px; font-size: 13px; cursor: pointer;
+      border: 1.5px solid ${cfg.primaryColor}; color: ${cfg.primaryColor}; background: #fff;
+      border-radius: 20px; padding: 8px 14px; font-size: 13px; cursor: pointer; font-weight: 500;
+      transition: all .2s; white-space: nowrap;
     }
-    .le-widget-buttons button:hover { background: ${cfg.primaryColor}; color: #fff; }
+    .le-widget-buttons button:hover { background: ${cfg.primaryColor}; color: #fff; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+    .le-widget-buttons button:active { transform: translateY(0); }
 
     .le-widget-footer {
-      border-top: 1px solid #eee; padding: 8px; display: flex; align-items: center; gap: 6px; background: #fff; color: #222 !important;
+      border-top: 1px solid #e8e8e8; padding: 12px 14px; display: flex; align-items: flex-end; gap: 8px; background: #fff; color: #222 !important; flex-shrink: 0;
     }
     .le-widget-input {
-      flex: 1 !important; border: 1px solid #ddd !important; outline: none !important; resize: none !important; font-size: 13.5px !important;
-      padding: 8px 10px !important; max-height: 80px !important; font-family: inherit !important; color: #000 !important; background: #fafafa !important; border-radius: 6px !important;
+      flex: 1 !important; border: 1.5px solid #e0e0e0 !important; outline: none !important; resize: none !important; font-size: 14px !important;
+      padding: 10px 12px !important; max-height: 100px !important; font-family: inherit !important; color: #000 !important; background: #fafafa !important; border-radius: 8px !important;
+      transition: all .2s !important; font-weight: 500 !important;
     }
-    .le-widget-input::placeholder { color: #aaa !important; }
-    .le-widget-input:focus { border-color: ${cfg.primaryColor} !important; background: #fff !important; }
+    .le-widget-input::placeholder { color: #999 !important; font-weight: 400 !important; }
+    .le-widget-input:focus { border-color: ${cfg.primaryColor} !important; background: #fff !important; box-shadow: 0 0 0 3px rgba(36, 154, 56, .1) !important; }
     .le-widget-iconbtn {
-      border: none; background: none; cursor: pointer; opacity: .6; padding: 4px; display: flex;
+      border: none; background: none; cursor: pointer; opacity: .5; padding: 6px; display: flex; align-items: center; justify-content: center; transition: opacity .2s, transform .2s; flex-shrink: 0;
     }
-    .le-widget-iconbtn:hover { opacity: 1; }
-    .le-widget-iconbtn svg { width: 20px; height: 20px; fill: #555; }
+    .le-widget-iconbtn:hover { opacity: 1; transform: scale(1.1); }
+    .le-widget-iconbtn svg { width: 22px; height: 22px; fill: #666; }
     .le-widget-send { fill: ${cfg.primaryColor} !important; }
 
     @media (max-width: 460px) {
