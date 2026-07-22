@@ -102,13 +102,13 @@
       flex: 1; overflow-y: auto; padding: 12px; background: #f7f7f8;
       display: flex; flex-direction: column; gap: 8px;
     }
-    .le-msg-wrapper { display: flex; flex-direction: column; gap: 4px; }
-    .le-msg-wrapper-bot { align-self: flex-start; }
-    .le-msg-wrapper-user { align-self: flex-end; }
-    .le-msg { max-width: 80%; padding: 9px 12px; border-radius: 10px; font-size: 13.5px; line-height: 1.4; white-space: pre-wrap; word-wrap: break-word; }
-    .le-msg-bot { background: #fff; border: 1px solid #e5e5e5; color: #222; }
-    .le-msg-user { background: ${cfg.primaryColor}; color: #fff; }
-    .le-msg-time { font-size: 11px; color: #999; align-self: flex-end; padding: 0 4px; }
+    .le-msg { max-width: 80%; padding: 9px 12px; border-radius: 10px; font-size: 13.5px; line-height: 1.4; white-space: pre-wrap; word-wrap: break-word; display: flex; flex-direction: column; gap: 6px; }
+    .le-msg-content { }
+    .le-msg-bot { background: #fff; border: 1px solid #e5e5e5; color: #222; align-self: flex-start; }
+    .le-msg-user { background: ${cfg.primaryColor}; color: #fff; align-self: flex-end; }
+    .le-msg-time { font-size: 11px; margin-top: 4px; }
+    .le-msg-bot .le-msg-time { color: #bbb; }
+    .le-msg-user .le-msg-time { color: rgba(255,255,255,.7); }
     .le-msg-typing { align-self: flex-start; display: flex; gap: 4px; padding: 10px 12px; }
     .le-msg-typing span { width: 6px; height: 6px; border-radius: 50%; background: #bbb; animation: le-blink 1.2s infinite; }
     .le-msg-typing span:nth-child(2) { animation-delay: .2s; }
@@ -204,17 +204,17 @@
   }
 
   function addUserMessage(text) {
-    var wrapper = document.createElement("div");
-    wrapper.className = "le-msg-wrapper le-msg-wrapper-user";
     var div = document.createElement("div");
     div.className = "le-msg le-msg-user";
-    div.textContent = text;
+    var textSpan = document.createElement("div");
+    textSpan.className = "le-msg-content";
+    textSpan.textContent = text;
     var time = document.createElement("div");
     time.className = "le-msg-time";
     time.textContent = new Date().toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" });
-    wrapper.appendChild(div);
-    wrapper.appendChild(time);
-    bodyEl.appendChild(wrapper);
+    div.appendChild(textSpan);
+    div.appendChild(time);
+    bodyEl.appendChild(div);
     scrollToBottom();
   }
 
@@ -229,17 +229,17 @@
 }
 
 function addBotMessage(text) {
-  var wrapper = document.createElement("div");
-  wrapper.className = "le-msg-wrapper le-msg-wrapper-bot";
   var div = document.createElement("div");
   div.className = "le-msg le-msg-bot";
-  div.innerHTML = formatBotText(text);
+  var textSpan = document.createElement("div");
+  textSpan.className = "le-msg-content";
+  textSpan.innerHTML = formatBotText(text);
   var time = document.createElement("div");
   time.className = "le-msg-time";
   time.textContent = new Date().toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" });
-  wrapper.appendChild(div);
-  wrapper.appendChild(time);
-  bodyEl.appendChild(wrapper);
+  div.appendChild(textSpan);
+  div.appendChild(time);
+  bodyEl.appendChild(div);
   scrollToBottom();
 }
 
