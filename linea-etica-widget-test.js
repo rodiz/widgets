@@ -96,14 +96,14 @@
     .le-widget-header {
       background: ${cfg.primaryColor};
       color: #fff; padding: 16px 20px;
-      display: flex; align-items: center; justify-content: space-between; gap: 12px;
-      flex-shrink: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 12px;
+      flex-shrink: 0; position: relative;
     }
-    .le-widget-header-logo { height: 70px; max-width: 140px; object-fit: contain; }
-    .le-widget-header-text { flex: 1; min-width: 0; }
-    .le-widget-header-text strong { display: block; font-size: 16px; font-weight: 600; line-height: 1.2; }
+    .le-widget-header-logo { height: 60px; max-width: 160px; object-fit: contain; width: 100%; }
+    .le-widget-header-text { text-align: center; }
+    .le-widget-header-text strong { display: block; font-size: 18px; font-weight: 700; line-height: 1.2; }
     .le-widget-header-text span { display: block; font-size: 13px; opacity: .9; margin-top: 4px; }
-    .le-widget-close { cursor: pointer; opacity: .8; font-size: 24px; line-height: 1; background: none; border: none; color: #fff; padding: 4px; transition: opacity .2s; flex-shrink: 0; }
+    .le-widget-close { position: absolute; top: 12px; right: 12px; cursor: pointer; opacity: .8; font-size: 28px; line-height: 1; background: none; border: none; color: #fff; padding: 4px; transition: opacity .2s; }
     .le-widget-close:hover { opacity: 1; }
 
     .le-widget-body {
