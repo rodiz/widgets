@@ -99,7 +99,7 @@
       display: flex; align-items: center; justify-content: space-between; gap: 12px;
       flex-shrink: 0;
     }
-    .le-widget-header-logo { height: 55px; max-width: 110px; object-fit: contain; }
+    .le-widget-header-logo { height: 70px; max-width: 140px; object-fit: contain; }
     .le-widget-header-text { flex: 1; min-width: 0; }
     .le-widget-header-text strong { display: block; font-size: 16px; font-weight: 600; line-height: 1.2; }
     .le-widget-header-text span { display: block; font-size: 13px; opacity: .9; margin-top: 4px; }
