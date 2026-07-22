@@ -36,7 +36,8 @@
     buttonImageFit: "contain",   // que no recorte tu tarjeta
     buttonBoxShadow: "none",     // tu imagen ya trae su propia sombra
     buttonOffsetX: "-10px",  // pon "none" si tu imagen ya trae su propia sombra
-    buttonOffsetY: "20px"
+    buttonOffsetY: "20px",
+    logoUrl: "https://www.puertoaguadulce.com/wp-content/uploads/2020/03/LOGO-AGUADULCE-1-e1583337724977.jpg"
     },
     window.LineaEticaWidgetConfig || {}
   );
@@ -91,8 +92,9 @@
 
     .le-widget-header {
       background: ${cfg.primaryColor}; color: #fff; padding: 14px 16px;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
     }
+    .le-widget-header-logo { height: 40px; max-width: 80px; object-fit: contain; }
     .le-widget-header-text strong { display: block; font-size: 15px; }
     .le-widget-header-text span { display: block; font-size: 12px; opacity: .85; }
     .le-widget-close { cursor: pointer; opacity: .85; font-size: 20px; line-height: 1; background: none; border: none; color: #fff; }
@@ -164,6 +166,7 @@
   panel.className = "le-widget-panel";
   panel.innerHTML =
     '<div class="le-widget-header">' +
+    (cfg.logoUrl ? '  <img class="le-widget-header-logo" src="' + cfg.logoUrl + '" alt="Logo">' : '') +
     '  <div class="le-widget-header-text"><strong>' + cfg.title + '</strong><span>' + cfg.subtitle + '</span></div>' +
     '  <button class="le-widget-close" aria-label="Cerrar">×</button>' +
     '</div>' +
