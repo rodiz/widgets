@@ -122,11 +122,11 @@
       border-top: 1px solid #eee; padding: 8px; display: flex; align-items: center; gap: 6px; background: #fff;
     }
     .le-widget-input {
-      flex: 1; border: 1px solid #ddd; outline: none; resize: none; font-size: 13.5px;
-      padding: 8px 10px; max-height: 80px; font-family: inherit; color: #000; background: #fafafa; border-radius: 6px;
+      flex: 1 !important; border: 1px solid #ddd !important; outline: none !important; resize: none !important; font-size: 13.5px !important;
+      padding: 8px 10px !important; max-height: 80px !important; font-family: inherit !important; color: #000 !important; background: #fafafa !important; border-radius: 6px !important;
     }
-    .le-widget-input::placeholder { color: #aaa; }
-    .le-widget-input:focus { border-color: ${cfg.primaryColor}; background: #fff; }
+    .le-widget-input::placeholder { color: #aaa !important; }
+    .le-widget-input:focus { border-color: ${cfg.primaryColor} !important; background: #fff !important; }
     .le-widget-iconbtn {
       border: none; background: none; cursor: pointer; opacity: .6; padding: 4px; display: flex;
     }
