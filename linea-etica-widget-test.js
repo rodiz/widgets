@@ -122,10 +122,11 @@
       border-top: 1px solid #eee; padding: 8px; display: flex; align-items: center; gap: 6px; background: #fff;
     }
     .le-widget-input {
-      flex: 1; border: none; outline: none; resize: none; font-size: 13.5px;
-      padding: 8px 10px; max-height: 80px; font-family: inherit; color: #222; background: #fff;
+      flex: 1; border: 1px solid #ddd; outline: none; resize: none; font-size: 13.5px;
+      padding: 8px 10px; max-height: 80px; font-family: inherit; color: #000; background: #fafafa; border-radius: 6px;
     }
-    .le-widget-input::placeholder { color: #999; }
+    .le-widget-input::placeholder { color: #aaa; }
+    .le-widget-input:focus { border-color: ${cfg.primaryColor}; background: #fff; }
     .le-widget-iconbtn {
       border: none; background: none; cursor: pointer; opacity: .6; padding: 4px; display: flex;
     }
