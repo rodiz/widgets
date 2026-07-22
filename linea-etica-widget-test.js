@@ -123,7 +123,7 @@
     }
     .le-widget-input {
       flex: 1; border: none; outline: none; resize: none; font-size: 13.5px;
-      padding: 8px 10px; max-height: 80px; font-family: inherit;
+      padding: 8px 10px; max-height: 80px; font-family: inherit; color: #222; background: #fff;
     }
     .le-widget-iconbtn {
       border: none; background: none; cursor: pointer; opacity: .6; padding: 4px; display: flex;
