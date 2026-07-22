@@ -119,7 +119,7 @@
     .le-widget-buttons button:hover { background: ${cfg.primaryColor}; color: #fff; }
 
     .le-widget-footer {
-      border-top: 1px solid #eee; padding: 8px; display: flex; align-items: center; gap: 6px; background: #fff;
+      border-top: 1px solid #eee; padding: 8px; display: flex; align-items: center; gap: 6px; background: #fff; color: #222 !important;
     }
     .le-widget-input {
       flex: 1 !important; border: 1px solid #ddd !important; outline: none !important; resize: none !important; font-size: 13.5px !important;
