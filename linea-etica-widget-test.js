@@ -47,19 +47,19 @@
     return;
   }
 
-  // ---------- Sesión persistente ----------
+  // ---------- Sesión por ventana (se borra al cerrar) ----------
   var SESSION_KEY = "le_widget_session_id";
   function getSessionId() {
     try {
-      var sid = localStorage.getItem(SESSION_KEY);
+      var sid = sessionStorage.getItem(SESSION_KEY);
       if (!sid) {
         sid = "web:" + (crypto.randomUUID ? crypto.randomUUID() : (Date.now() + "-" + Math.random().toString(36).slice(2)));
-        localStorage.setItem(SESSION_KEY, sid);
+        sessionStorage.setItem(SESSION_KEY, sid);
       }
       return sid;
     } catch (e) {
-      // localStorage bloqueado (modo incógnito estricto, etc.)
-      return "web:" + Date.now();
+      // sessionStorage bloqueado (modo incógnito estricto, etc.)
+      return "web:" + Date.now() + "-" + Math.random().toString(36).slice(2);
     }
   }
   var sessionId = getSessionId();
